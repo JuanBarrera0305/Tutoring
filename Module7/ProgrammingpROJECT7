@@ -1,110 +1,18 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>CMPS 162: Module 5 Programming Project</title>
-<style>
-  * { font-family: monospace; }
-  
-  /* Style to increase the text size */
-  #increaseText {
-    font-size: 8em;
-  }
-  
-  /* Style to decrease the text size */
-  #decreaseText {
-    font-size: 5em;
-  }
-</style>
-<script>
-
-//--------//
-// Events //
-//--------//
-console.log("Events");
-
-// 1. Change the link (the <a> tag) in the HTML body below such that a hello
-//    message is displayed on a click event.
-document.addEventListener("DOMContentLoaded", function() {
-  document.querySelector("a").addEventListener("click", function() {
-    alert("Hello!");
-  });
-});
-
-//--------------//
-// Input Fields //
-//--------------//
-console.log("Input Fields");
-
-// 1. Change the background color to red for the input text field (the <input>
-//    tag) in the HTML body when obtaining the focus and change it back to
-//    white when the focus is lost.
-function changeBackgroundColor() {
-  const inputField = document.getElementById("myTextField");
-  inputField.addEventListener("focus", function() {
-    inputField.style.backgroundColor = "red";
-  });
-
-  inputField.addEventListener("blur", function() {
-    inputField.style.backgroundColor = "white";
-  });
-}
-
-// 2. Change the text from the default font color to blue
-function changeTextColor() {
-  const inputField = document.getElementById("myTextField");
-  inputField.style.color = "blue";
-}
-
-//--------//
-// Images //
-//--------//
-console.log("Images");
-
-// 1. Add an image to the HTML body (use the <img> tag). Make it disappear when
-//    someone clicks on it.
-function hideImage() {
-  const image = document.getElementById("image1");
-  image.style.display = "none";
-}
-
-// 2. Mouse over an object having an existing image and by mousing over another image appears in its place
-function swapImageOnHover() {
-  const img = document.getElementById("image1");
-  img.addEventListener("mouseover", function() {
-    img.src = "https://via.placeholder.com/150/ff0000/ffffff?text=New+Image";
-  });
-
-  img.addEventListener("mouseout", function() {
-    img.src = "https://via.placeholder.com/150/0000ff/ffffff?text=Original+Image";
-  });
-}
-
-//--------//
-// Styles //
-//--------//
-console.log("Styles");
-
-// 1. Use the style to increase the text "The Pirates will advance to the World Series in 2025" 
-//    Use a paragraph style code and increase the text to 8 em
-function increaseTextSize() {
-  const paragraph = document.getElementById("increaseText");
-  paragraph.classList.add("increaseText");
-}
-
-// 2. Use the style to decrease the text "The Pirates will advance to the World Series in 2025" 
-//    Use a paragraph style code and increase the text to 5 em
-function decreaseTextSize() {
-  const paragraph = document.getElementById("decreaseText");
-  paragraph.classList.add("decreaseText");
-}
-</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Page</title>
+  <style>
+    #increaseText {
+      font-size: 20px;
+    }
+  </style>
 </head>
 <body>
-  See console!<br><br>
-  
   <!-- 1. Add an event listener to display a greeting -->
-  <a href="javascript:void(0);">Click here for a greeting!</a><br><br>
+  <a href="javascript:void(0);" onclick="displayGreeting()">Click here for a greeting!</a><br><br>
   
   <!-- 2. Add the input field and its corresponding event handler -->
   <input type="text" id="myTextField" value="Type here" oninput="changeBackgroundColor(); changeTextColor();"><br><br>
@@ -113,18 +21,64 @@ function decreaseTextSize() {
   <button onclick="increaseTextSize()">Increase Text Size</button>
   <button onclick="decreaseTextSize()">Decrease Text Size</button><br><br>
 
-  <div id="div1"
-       style="background-color:yellow;"
-       onclick="swapColors();">
+  <div id="div1" style="background-color:yellow;" onclick="swapColors();">
     Hello
   </div>
-  <div id="div2"
-       style="background-color:green;"
-       onclick="swapColors();">
+  <div id="div2" style="background-color:green;" onclick="swapColors();">
     World
   </div>
 
   <!-- 3. Add an image and make it disappear when clicked -->
   <img id="image1" src="https://via.placeholder.com/150/0000ff/ffffff?text=Original+Image" alt="Image" onclick="hideImage();" onmouseover="swapImageOnHover();"><br><br>
+
+  <script>
+    // 1. Display a greeting when the link is clicked
+    function displayGreeting() {
+      alert("Hello! Welcome to the interactive page!");
+    }
+
+    // 2. Change background color based on the text input
+    function changeBackgroundColor() {
+      let inputText = document.getElementById('myTextField').value;
+      document.body.style.backgroundColor = inputText ? 'lightblue' : 'white';
+    }
+
+    // 3. Change text color based on the text input
+    function changeTextColor() {
+      let inputText = document.getElementById('myTextField').value;
+      document.getElementById('increaseText').style.color = inputText ? 'red' : 'black';
+    }
+
+    // 4. Increase the font size of the text in the paragraph
+    function increaseTextSize() {
+      let currentSize = parseInt(window.getComputedStyle(document.getElementById('increaseText')).fontSize);
+      document.getElementById('increaseText').style.fontSize = (currentSize + 2) + 'px';
+    }
+
+    // 5. Decrease the font size of the text in the paragraph
+    function decreaseTextSize() {
+      let currentSize = parseInt(window.getComputedStyle(document.getElementById('increaseText')).fontSize);
+      document.getElementById('increaseText').style.fontSize = (currentSize - 2) + 'px';
+    }
+
+    // 6. Swap colors between two divs when clicked
+    function swapColors() {
+      let div1 = document.getElementById('div1');
+      let div2 = document.getElementById('div2');
+      let div1Color = div1.style.backgroundColor;
+      div1.style.backgroundColor = div2.style.backgroundColor;
+      div2.style.backgroundColor = div1Color;
+    }
+
+    // 7. Hide the image when clicked
+    function hideImage() {
+      document.getElementById('image1').style.display = 'none';
+    }
+
+    // 8. Swap the image on hover
+    function swapImageOnHover() {
+      document.getElementById('image1').src = "https://via.placeholder.com/150/ff0000/ffffff?text=Hovered+Image";
+    }
+  </script>
 </body>
 </html>

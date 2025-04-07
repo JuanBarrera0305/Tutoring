@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Send custom desktop notifications using your own title and message." />
+  <meta name="author" content="Your Name" />
+  <title>Custom Notification Sender</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/190/190411.png" type="image/png" />
+</head>
+<body>
+  <main class="container" role="main">
+    <header>
+      <h1>🔔 Notification Sender</h1>
+      <p>Type a custom title and message to trigger a browser notification after 5 seconds.</p>
+    </header>
+
+    <form id="notificationForm" onsubmit="event.preventDefault(); sendNotification();" aria-label="Notification Form">
+      <label for="titleInput">Notification Title</label>
+      <input id="titleInput" type="text" placeholder="Enter notification title" required />
+
+      <label for="messageInput">Message</label>
+      <input id="messageInput" type="text" placeholder="Enter your message" required />
+
+      <button type="submit">Send Notification</button>
+    </form>
+
+    <section class="count" aria-live="polite">
+      <p>Notifications sent: <span id="counter">0</span></p>
+    </section>
+
+    <footer>
+      <p>Built with 💻 using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API" target="_blank">Web Notifications API</a>.</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
